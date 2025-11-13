@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Game from "../game/Game";
+import Game from "../game-card/GameCard";
 
 const BASE_URL = 'http://localhost:3030/jsonstore/games';
 
