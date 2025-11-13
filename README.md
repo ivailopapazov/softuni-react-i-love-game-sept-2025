@@ -18,4 +18,5 @@
  - [x] Delete Game
 
 ## Bonus
- - [ ] Add Game
+ - [x] Add Game
+ - [ ] Requester
