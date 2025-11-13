@@ -7,5 +7,8 @@
  - [x] Add resources
  - [x] Add react-router `npm i react-router`
  - [x] Copy html from template index.html into App.jsx (convert to jsx)
- - [ ] Extract homepage components
- - [ ] Setup react-router
+ - [x] Extract homepage components (Header, Home and Footer)
+ - [x] Setup react-router `npm i react-router`
+ - [x] Add BrowserRouter Component
+ - [x] Add Routes 
+ - [ ] Dynamic Navigation
