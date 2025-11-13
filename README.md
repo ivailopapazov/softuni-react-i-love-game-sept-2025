@@ -7,4 +7,5 @@
  - [x] Add resources
  - [x] Add react-router `npm i react-router`
  - [x] Copy html from template index.html into App.jsx (convert to jsx)
+ - [ ] Extract homepage components
  - [ ] Setup react-router
