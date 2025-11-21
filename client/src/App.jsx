@@ -8,6 +8,7 @@ import Catalog from "./components/catalog/Catalog"
 import Details from "./components/details/Details"
 import GameCreate from "./game-create/GameCreate"
 import Register from "./components/register/Register"
+import Login from "./components/login/Login"
 
 function App() {
     const [user, setUser] = useState(null);
@@ -28,6 +29,7 @@ function App() {
                 <Route path="/games/:gameId/details" element={<Details />} />
                 <Route path="/games/create" element={<GameCreate />} />
                 <Route path="/register" element={<Register onRegister={authHandler} />} />
+                <Route path="/login" element={<Login onLogin={authHandler} />} />
             </Routes>
 
             <Footer />
