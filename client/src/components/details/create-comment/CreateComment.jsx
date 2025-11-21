@@ -5,8 +5,6 @@ import { useParams } from "react-router";
 export default function CreateComment({
     user,
 }) {
-    console.log(user);
-    
     const { gameId } = useParams();
     const [comment, setComment] = useState('');
 
