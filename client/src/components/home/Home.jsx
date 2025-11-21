@@ -27,15 +27,16 @@ export default function Home() {
                 <img id="logo-left" src="./images/logo.png" alt="logo" />
             </div>
 
-            <div id="home-page" />
-            <h1>Latest Games</h1>
-            <div id="latest-wrap">
-                <div className="home-container">
-                    {latestGames.length === 0 && <p className="no-articles">No games yet</p>}
+            <div id="home-page">
+                <h1>Latest Games</h1>
+                <div id="latest-wrap">
+                    <div className="home-container">
+                        {latestGames.length === 0 && <p className="no-articles">No games yet</p>}
 
-                    {latestGames.map(game => <GameCard key={game._id} {...game} />)}
+                        {latestGames.map(game => <GameCard key={game._id} {...game} />)}
+                    </div>
+
                 </div>
-
             </div>
         </section>
     );
