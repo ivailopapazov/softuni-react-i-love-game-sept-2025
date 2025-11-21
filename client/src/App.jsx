@@ -12,7 +12,7 @@ import Register from "./components/register/Register"
 function App() {
     const [user, setUser] = useState(null);
 
-    const registerHandler = (email) => {
+    const authHandler = (email) => {
         setUser({
             email,
         });
@@ -27,7 +27,7 @@ function App() {
                 <Route path="/games" element={<Catalog />} />
                 <Route path="/games/:gameId/details" element={<Details />} />
                 <Route path="/games/create" element={<GameCreate />} />
-                <Route path="/register" element={<Register user={user} onRegister={registerHandler} />} />
+                <Route path="/register" element={<Register onRegister={authHandler} />} />
             </Routes>
 
             <Footer />
