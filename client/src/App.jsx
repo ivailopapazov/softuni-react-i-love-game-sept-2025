@@ -11,13 +11,28 @@ import Register from "./components/register/Register"
 import Login from "./components/login/Login"
 
 function App() {
+    const [registerdUsers, setRegisteredUsers] = useState([]);
     const [user, setUser] = useState(null);
 
-    const authHandler = (email) => {
-        setUser({
-            email,
-        });
+    const registerHandler = (email, password) => {
+
+        if (registerdUsers.some(user => user.email === email)) {
+            throw new Error('Email is taken!');
+        }
+
+        setRegisteredUsers(state => [...state, { email, password }]);
+
+        // TODO Login user after register
     };
+
+    const loginHandler = (email, password) => {
+        const user = registerdUsers.find(u => u.email === email && u.password === password);
+        if (!user) {
+            throw new Error('Invalid email or password')
+        }
+
+        setUser(user);
+    }
 
     return (
         <>
@@ -28,8 +43,8 @@ function App() {
                 <Route path="/games" element={<Catalog />} />
                 <Route path="/games/:gameId/details" element={<Details />} />
                 <Route path="/games/create" element={<GameCreate />} />
-                <Route path="/register" element={<Register onRegister={authHandler} />} />
-                <Route path="/login" element={<Login onLogin={authHandler} />} />
+                <Route path="/register" element={<Register onRegister={registerHandler} />} />
+                <Route path="/login" element={<Login onLogin={loginHandler} />} />
             </Routes>
 
             <Footer />
