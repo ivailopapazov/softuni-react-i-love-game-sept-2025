@@ -1,11 +1,13 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import UserContext from "../contexts/UserContext";
 
 const baseUrl = 'http://localhost:3030';
 
-export default function useRequest() {
+export default function useRequest(url, initialState) {
     const { user, isAuthenticated } = useContext(UserContext);
+    const [data, setData] = useState(initialState);
 
+    // TODO Fix infinite loop problem on mount request with useEffect
     const request = async (url, method, data, config = {}) => {
         let options = {};
 
@@ -44,7 +46,17 @@ export default function useRequest() {
         return result;
     };
 
+    useEffect(() => {
+        if (!url) return;
+
+        request(url)
+            .then(result => setData(result))
+            .catch(err => alert(err));
+    }, [url]);
+
     return {
         request,
+        data,
+        setData,
     }
 }
