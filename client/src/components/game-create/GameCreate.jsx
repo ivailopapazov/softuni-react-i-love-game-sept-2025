@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router";
-import request from "../utils/request";
+import request from "../../utils/request";
 import { useEffect, useState } from "react";
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
-import { storage } from "../firebase";
+import { storage } from "../../firebase";
 
 export default function GameCreate() {
     const navigate = useNavigate();
