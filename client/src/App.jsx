@@ -12,36 +12,28 @@ import Login from "./components/login/Login"
 import Logout from "./components/logout/Logout"
 import Edit from "./components/edit/Edit"
 import UserContext from "./contexts/UserContext"
+import useRequest from "./hooks/useFetch"
 
 function App() {
     const [user, setUser] = useState(null);
+    const { request } = useRequest();
 
     const registerHandler = async (email, password) => {
         const newUser = { email, password };
 
         // Register API call 
-        const response = await fetch('http://localhost:3030/users/register', {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json',
-            },
-            body: JSON.stringify(newUser),
-        });
-
-        const result = await response.json();
-
-        console.log(result);
+        const result = await request('/users/register', 'POST', newUser);
 
         // Login user after register
         setUser(result);
     };
 
-    const loginHandler = (email, password) => {
-        if (!user) {
-            throw new Error('Invalid email or password')
-        }
+    const loginHandler = async (email, password) => {
+        const result = await request('/users/login', 'POST', { email, password });
 
-        setUser(user);
+        console.log(result);
+
+        setUser(result);
     };
 
     const logoutHandler = () => {
@@ -54,7 +46,7 @@ function App() {
         registerHandler,
         loginHandler,
         logoutHandler,
-    }
+    };
 
     return (
         <UserContext.Provider value={userContextValues}>
@@ -67,7 +59,7 @@ function App() {
                 <Route path="/games/:gameId/edit" element={<Edit />} />
                 <Route path="/games/create" element={<GameCreate />} />
                 <Route path="/register" element={<Register />} />
-                <Route path="/login" element={<Login onLogin={loginHandler} />} />
+                <Route path="/login" element={<Login />} />
                 <Route path="/logout" element={<Logout onLogout={logoutHandler} />} />
             </Routes>
 
