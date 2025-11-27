@@ -36,7 +36,6 @@ export default function useRequest(url, initialState) {
             throw response.statusText;
         }
 
-        console.log(response.status);
         if (response.status === 204) {
             return {};
         }
