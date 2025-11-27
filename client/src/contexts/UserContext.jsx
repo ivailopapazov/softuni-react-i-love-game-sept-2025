@@ -40,12 +40,8 @@ export function UserProvider({
     };
 
     const logoutHandler = () => {
-        return request('/users/logout')
-            .finally(() => {
-                console.log('setUser Null');
-
-                setUser(null)
-            });
+        return request('/users/logout', 'GET', null, { accessToken: user.accessToken })
+            .finally(() => setUser(null));
     };
 
     const userContextValues = {

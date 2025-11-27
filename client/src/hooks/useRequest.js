@@ -6,7 +6,7 @@ const baseUrl = 'http://localhost:3030';
 export default function useRequest() {
     const { user, isAuthenticated } = useContext(UserContext);
 
-    const request = async (url, method, data) => {
+    const request = async (url, method, data, config = {}) => {
         let options = {};
 
         if (method) {
@@ -21,10 +21,10 @@ export default function useRequest() {
             options.body = JSON.stringify(data);
         }
 
-        if (isAuthenticated) {
+        if (config.accessToken || isAuthenticated) {
             options.headers = {
                 ...options.headers,
-                'X-Authorization': user.accessToken,
+                'X-Authorization': config.accessToken || user.accessToken,
             }
         }
 
