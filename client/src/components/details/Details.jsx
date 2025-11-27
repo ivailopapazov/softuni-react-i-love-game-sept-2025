@@ -3,10 +3,10 @@ import { Link, useNavigate, useParams } from "react-router";
 import CreateComment from "./create-comment/CreateComment";
 import DetailsComments from "./details-comments/DetailsComments";
 import useRequest from "../../hooks/useRequest";
+import { useUserContext } from "../../contexts/UserContext";
 
-export default function Details({
-    user,
-}) {
+export default function Details() {
+    const { user, isAuthenticated } = useUserContext();
     const navigate = useNavigate();
     const { gameId } = useParams();
     const [refresh, setRefresh] = useState(false);
@@ -74,7 +74,7 @@ export default function Details({
                 <DetailsComments refresh={refresh} />
             </div>
 
-            {user && <CreateComment user={user} onCreate={refreshHandler} />}
+            {isAuthenticated && <CreateComment user={user} onCreate={refreshHandler} />}
         </section>
     );
 }

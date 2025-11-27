@@ -10,7 +10,6 @@ export default function GameCreate() {
         const data = values;
 
         data.players = Number(data.players);
-        data._createdOn = Date.now();
 
         try {
             await request('/data/games', 'POST', data);
