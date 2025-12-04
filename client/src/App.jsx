@@ -1,5 +1,7 @@
 import { Route, Routes } from "react-router"
 
+import { useUserContext } from "./contexts/UserContext"
+
 import Header from "./components/header/Header"
 import Footer from "./components/footer/Footer"
 import Home from "./components/home/Home"
@@ -10,11 +12,9 @@ import Register from "./components/register/Register"
 import Login from "./components/login/Login"
 import Logout from "./components/logout/Logout"
 import Edit from "./components/edit/Edit"
-import UserContext from "./contexts/UserContext"
-import { useContext } from "react"
 
 function App() {
-    const { user } = useContext(UserContext);
+    const { user } = useUserContext();
 
     return (
         <>

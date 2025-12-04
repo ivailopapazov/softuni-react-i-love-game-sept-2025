@@ -1,22 +1,29 @@
 import { useParams } from "react-router";
 import useRequest from "../../../hooks/useRequest";
 import useForm from "../../../hooks/useForm";
+import { v4 as uuid } from 'uuid';
 
 export default function CreateComment({
     user,
-    onCreate,
+    onCreateEnd,
+    onCreateStart,
 }) {
     const { gameId } = useParams();
     const { request } = useRequest();
 
     const submitHandler = async ({ comment }) => {
-        try {
-            await request('/data/comments', 'POST', {
-                message: comment,
-                gameId,
-            });
+        const data = {
+            _id: uuid(),
+            message: comment,
+            gameId,
+        };
 
-            onCreate();
+        onCreateStart(data);
+
+        try {
+            const createdComment = await request('/data/comments', 'POST', data);
+
+            onCreateEnd(createdComment);
         } catch (err) {
             alert(err.message);
         }
