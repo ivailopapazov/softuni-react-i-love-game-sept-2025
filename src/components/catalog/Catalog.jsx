@@ -7,7 +7,7 @@ export default function Catalog() {
     // const [games, setGames] = useState([]);
 
     // useEffect(() => {
-    //     fetch('http://localhost:3030/data/games')
+    //     fetch('http://127.0.0.1:5001/i-love-game-setp-2025/us-central1/server/data/games')
     //         .then(res => res.json())
     //         .then(result => {
     //             setGames(result);
