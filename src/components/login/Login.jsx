@@ -2,6 +2,7 @@ import { useNavigate } from "react-router";
 import useForm from "../../hooks/useForm";
 import { useContext } from "react";
 import UserContext from "../../contexts/UserContext";
+import { toast } from "react-toastify";
 
 export default function Login() {
     const navigate = useNavigate();
@@ -14,10 +15,12 @@ export default function Login() {
 
         try {
             await loginHandler(email, password);
+            toast.success(`Successful Login`);
 
             navigate('/');
         } catch (err) {
-            alert(err.message);
+            // toast(`Cannot login`, { type: 'error' });
+            toast.error(`Cannot login`);
         }
     }
 
