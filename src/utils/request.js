@@ -1,4 +1,4 @@
-const baseUrl = 'http://127.0.0.1:5001/i-love-game-setp-2025/us-central1/server/jsonstore'
+const baseUrl = `${import.meta.env.VITE_APP_SERVER_URL}/jsonstore`
 
 export default async function request(url, method, data) {
     let options = {};
